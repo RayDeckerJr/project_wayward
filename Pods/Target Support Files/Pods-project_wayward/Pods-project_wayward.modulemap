@@ -1,0 +1,6 @@
+framework module Pods_project_wayward {
+  umbrella header "Pods-project_wayward-umbrella.h"
+
+  export *
+  module * { export * }
+}
