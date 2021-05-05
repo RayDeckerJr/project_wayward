@@ -18,14 +18,13 @@ class FeedCell: UICollectionViewCell{
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.isUserInteractionEnabled = true
-        iv.image = #imageLiteral(resourceName: "006-user-1")
+        iv.backgroundColor = .gray
         return iv
     }()
     
     private lazy var usernameButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitleColor(.white, for: .normal)
-        button.setTitle("RVY", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         button.addTarget(self, action: #selector(didTapUsername), for: .touchUpInside)
         return button
@@ -113,16 +112,21 @@ class FeedCell: UICollectionViewCell{
     }
     
     //MARK: - Actions
+
     @objc func didTapUsername(){
         print("Debug: did tap username")
     }
+      
     //MARK: - Helpers
     func configure() {
         guard let viewModel = viewModel else {return}
         captionLabel.text = viewModel.caption
         postImageView.sd_setImage(with: viewModel.imageUrl)
+        likesLabel.text = viewModel.likesLabelText
         
-        
+        //User Stuff
+        profileImageView.sd_setImage(with: viewModel.userProfileUrl)
+        usernameButton.setTitle(viewModel.username, for: .normal)
         
     }
     

@@ -10,7 +10,7 @@ import Firebase
 import FirebaseFirestoreSwift
 
 struct PostService {
-    static func uploadPost(caption: String, image: UIImage, completion: @escaping(FirestoreCompletion))
+    static func uploadPost(user: User ,caption: String, image: UIImage, completion: @escaping(FirestoreCompletion))
     {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         imageUploader.uploadImage(image: image) { imageURL in
@@ -18,7 +18,9 @@ struct PostService {
                         "timestamp": Timestamp(date: Date()),
                         "likes": 0,
                         "imageurl": imageURL,
-                        "ownerUid" : uid
+                        "ownerUid" : uid,
+                        "ownerImageUrl": user.profileImageURL,
+                        "ownerUsername": user.username
                         //ADD MORE FIELDS HERE FOR UPLOAD
             ] as [String: Any]
             
@@ -27,7 +29,7 @@ struct PostService {
     }
     
     static func fetchPosts(completion: @escaping ([Post])-> Void) {
-        COLLECTION_POSTS.getDocuments { (snapshot, error) in
+        COLLECTION_POSTS.order(by: "timestamp").getDocuments { (snapshot, error) in
             guard let documents = snapshot?.documents else {return}
             let posts = documents.map({Post(postID: $0.documentID, dictionary: $0.data()) })
             completion(posts)
