@@ -7,14 +7,14 @@
 
 import UIKit
 
-protocol UploadPostControllerDelegate: class {
+protocol UploadPostControllerDelegate: AnyObject {
     func controllerDidFinishUploadingPost(_ controller: UploadPostController)
 }
 
 class UploadPostController: UIViewController {
     //MARK: - Properties
     
-    weak var delegate: UploadPostControllerDelegate?
+    weak var delegate:UploadPostControllerDelegate?
     
     var selectImage: UIImage? {
         didSet{photoImageView.image = selectImage}
@@ -54,17 +54,19 @@ class UploadPostController: UIViewController {
     //MARK: - Actions
     @objc func didTapCancel(){
         dismiss(animated: true, completion: nil)
-        self.delegate?.controllerDidFinishUploadingPost(self)
     }
     @objc func didTapDone(){
         guard let image = selectImage else {return}
         guard let caption = captionTextView.text  else { return}
+        showLoader(true)
         PostService.uploadPost(caption: caption, image: image) { error in
+            self.showLoader(false)
             if let error = error {
-                
+                print(error.localizedDescription)
                 return
             }
-            self.delegate?.controllerDidFinishUploadingPost(self)
+            
+        self.delegate?.controllerDidFinishUploadingPost(self)
         }
     }
     //MARK: - Helpers

@@ -128,7 +128,7 @@ extension MainTabController: UITabBarControllerDelegate {
     }
     
 }
-
+// MARK: - UPLOAD POST DELEGATE
 extension MainTabController: UploadPostControllerDelegate {
     func controllerDidFinishUploadingPost(_ controller: UploadPostController) {
         selectedIndex = 0

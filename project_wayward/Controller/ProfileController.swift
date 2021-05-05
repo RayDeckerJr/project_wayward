@@ -50,6 +50,7 @@ class ProfileController : UICollectionViewController {
     
     //MARK: - Helpers
     func configureCollectionView() {
+        collectionView.reloadData()
         collectionView.backgroundColor = .black
         navigationItem.title = user.username
         collectionView.register(ProfileCell.self, forCellWithReuseIdentifier: cellIdentifer)
