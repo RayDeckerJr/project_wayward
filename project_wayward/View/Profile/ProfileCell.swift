@@ -11,7 +11,7 @@ class ProfileCell: UICollectionViewCell {
     //MARK: - Properties
     private let postImageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = #imageLiteral(resourceName: "069-diamond")
+        iv.image = #imageLiteral(resourceName: "057-landing-page-1")
         iv.contentMode = .scaleAspectFill
         return iv
     }()
@@ -19,7 +19,7 @@ class ProfileCell: UICollectionViewCell {
     override init(frame: CGRect){
         super.init(frame: frame)
         
-        backgroundColor = .lightGray
+        backgroundColor = .black
         addSubview(postImageView)
         postImageView.fillSuperview()
     }

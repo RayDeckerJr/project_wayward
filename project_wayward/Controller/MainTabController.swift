@@ -7,17 +7,18 @@
 
 import UIKit
 import Firebase
+import YPImagePicker
 
     
 class MainTabController: UITabBarController {
     
     //MARK: - Lifecycle
+    
     private var user: User? {
         didSet{
             guard let user = user else {return}
-         configureViewControllers(withUser: user)
+            configureViewControllers(withUser: user)
         }
-        
     }
         
     override func viewDidLoad() {
@@ -51,22 +52,20 @@ class MainTabController: UITabBarController {
     //MARK: - Helpers
     
     func configureViewControllers(withUser user: User) {
-        
-        view.backgroundColor = .white
+        self.delegate = self
         
         let layout = UICollectionViewFlowLayout()
         
-        let feed = templeteNavigationController(unselectedImage: #imageLiteral(resourceName: "052-house"), selectedImage: #imageLiteral(resourceName: "052-house-1"), rootViewController: FeedController(collectionViewLayout: layout))
+        let feed = templeteNavigationController(unselectedImage: #imageLiteral(resourceName: "052-house-1"), selectedImage: #imageLiteral(resourceName: "034-view-1"), rootViewController: FeedController(collectionViewLayout: layout))
         
-        let search = templeteNavigationController( unselectedImage: #imageLiteral(resourceName: "023-search"), selectedImage: #imageLiteral(resourceName: "023-search-1"), rootViewController: SearchController())
+        let search = templeteNavigationController( unselectedImage: #imageLiteral(resourceName: "023-search-1"), selectedImage: #imageLiteral(resourceName: "034-view-1"), rootViewController: SearchController())
         
-        let imageselector = templeteNavigationController( unselectedImage: #imageLiteral(resourceName: "053-upload"), selectedImage: #imageLiteral(resourceName: "053-upload-1"), rootViewController: ImageSelectController())
+        let imageselector = templeteNavigationController( unselectedImage: #imageLiteral(resourceName: "053-upload-1"), selectedImage: #imageLiteral(resourceName: "034-view-1"), rootViewController: ImageSelectController())
         
-        let notifications = templeteNavigationController( unselectedImage: #imageLiteral(resourceName: "013-notification"), selectedImage: #imageLiteral(resourceName: "013-notification-1"), rootViewController: NotifacationController())
+        let notifications = templeteNavigationController( unselectedImage: #imageLiteral(resourceName: "013-notification-1"), selectedImage: #imageLiteral(resourceName: "034-view-1"), rootViewController: NotifacationController())
         
         let profileController = ProfileController(user: user)
-        let profile = templeteNavigationController(unselectedImage: #imageLiteral(resourceName: "006-user"),
-            selectedImage: #imageLiteral(resourceName: "006-user-1"), rootViewController: profileController)
+        let profile = templeteNavigationController(unselectedImage: #imageLiteral(resourceName: "006-user-1"), selectedImage: #imageLiteral(resourceName: "034-view-1"), rootViewController: profileController)
         
         viewControllers = [feed,search,imageselector,notifications,profile]
         
@@ -76,8 +75,15 @@ class MainTabController: UITabBarController {
         let nav = UINavigationController(rootViewController: rootViewController)
         nav.tabBarItem.image = unselectedImage
         nav.tabBarItem.selectedImage = selectedImage
-        
         return nav
+    }
+    
+    func didFinishPickingMedia(_ picker: YPImagePicker) {
+        picker.didFinishPicking { items,_ in
+            picker.dismiss(animated: true) {
+                guard let selectedImage = items.singlePhoto?.image else {return}
+            }
+        }
     }
 
 }
@@ -88,4 +94,31 @@ extension MainTabController: AuthenticationDelegate{
         self.dismiss(animated: true, completion: nil)
         
     }
+}
+
+// MARK: - TABDelegate
+
+extension MainTabController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        let index = viewControllers?.firstIndex(of: viewController)
+        if index == 2 {
+            var config = YPImagePickerConfiguration()
+            config.library.mediaType = .photo
+            config.shouldSaveNewPicturesToAlbum = false
+            config.startOnScreen = .library
+            config.screens = [.library]
+            config.hidesStatusBar = false
+            config.hidesStatusBar = false
+            config.library.maxNumberOfItems = 1
+            
+            let picker = YPImagePicker(configuration: config)
+            picker.modalPresentationStyle = .fullScreen
+            present(picker, animated: true, completion: nil )
+            
+            didFinishPickingMedia(picker)
+            
+        }
+        return true
+    }
+    
 }

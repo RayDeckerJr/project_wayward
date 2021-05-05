@@ -11,8 +11,7 @@ class UserCell: UITableViewCell {
     //MARK: - Properties
     
     var viewModel: UserCellViewModel?{
-        didSet {
-                    configure()
+        didSet { configure()
             if viewModel?.blueVerified == true{
                 verifiedBadgeBlue.image = #imageLiteral(resourceName: "BlueTick")
             }
@@ -28,7 +27,7 @@ class UserCell: UITableViewCell {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
-        iv.backgroundColor = .lightGray
+        iv.backgroundColor = .white
         return iv
         
     }()
@@ -77,12 +76,12 @@ class UserCell: UITableViewCell {
         addSubview(verifiedBadgeGreen)
         verifiedBadgeGreen.setDimensions(height: 10, width: 10)
         
-        let badgeStack = UIStackView(arrangedSubviews: [verifiedBadgeGreen,verifiedBadgeBlue])
+        let badgeStack = UIStackView(arrangedSubviews: [usernameLabel,verifiedBadgeGreen,verifiedBadgeBlue])
         badgeStack.axis = .horizontal
         badgeStack.spacing = 4
         badgeStack.alignment = .leading
         
-        let stack = UIStackView(arrangedSubviews: [badgeStack, usernameLabel,fullnameLabel])
+        let stack = UIStackView(arrangedSubviews: [badgeStack,fullnameLabel])
         stack.axis = .vertical
         stack.spacing = 4
         stack.alignment = .leading
@@ -100,7 +99,9 @@ class UserCell: UITableViewCell {
         guard let viewModel = viewModel else {return}
         profileImageView.sd_setImage(with: viewModel.profileImageUrl)
         usernameLabel.text = viewModel.username
+        usernameLabel.textColor = .white
         fullnameLabel.text = viewModel.fullname
+        fullnameLabel.textColor = .white
     }
 
 }

@@ -20,7 +20,7 @@ class FeedCell: UICollectionViewCell{
     
     private lazy var usernameButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.setTitle("RVY", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         button.addTarget(self, action: #selector(didTapUsername), for: .touchUpInside)
@@ -38,35 +38,37 @@ class FeedCell: UICollectionViewCell{
     //MARK: - BUTTONS
     private lazy var likeButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "003-like"), for: .normal)
-        button.setDimensions(height: 4, width: 4)
+        button.setImage(#imageLiteral(resourceName: "003-like-1"), for: .normal)
+        button.setDimensions(height: 48, width: 48)
         button.contentMode = .scaleAspectFill
         return button
     }()
     private lazy var commentButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "045-chat"), for: .normal)
-        button.setDimensions(height: 4, width: 4)
+        button.setImage(#imageLiteral(resourceName: "045-chat-1"), for: .normal)
+        button.setDimensions(height: 48, width: 48)
         button.contentMode = .scaleAspectFill
         return button
     }()
     private lazy var shareButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "041-paper-plane"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "041-paper-plane-1"), for: .normal)
         button.contentMode = .scaleAspectFill
-        button.setDimensions(height: 4, width: 4)
+        button.setDimensions(height: 48, width: 48)
         return button
     }()
     
     private let likesLabel: UILabel = {
         let label = UILabel()
         label.text = " 1 Likes"
+        label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: 12)
         return label
     }()
     private let captionLabel: UILabel = {
         let label = UILabel()
         label.text = "example caption"
+        label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
@@ -82,7 +84,7 @@ class FeedCell: UICollectionViewCell{
     override init(frame: CGRect){
         super.init(frame: frame)
         
-        backgroundColor = .white
+        backgroundColor = .black
         
         addSubview(profileImageView)
         profileImageView.anchor(top: topAnchor, left: leftAnchor,
@@ -116,11 +118,11 @@ class FeedCell: UICollectionViewCell{
     }
     //MARK: - Actions
     func confirgureActionsButtons(){
-        let  stackView = UIStackView(arrangedSubviews: [likeButton,commentButton,shareButton,likesLabel])
+        let  stackView = UIStackView(arrangedSubviews: [likeButton,commentButton,shareButton, likesLabel])
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         
         addSubview(stackView)
-        stackView.anchor(top: postImageView.bottomAnchor, width: 120, height: 50)
+        stackView.anchor(top: postImageView.bottomAnchor, width: 200, height: 48)
     }
 }

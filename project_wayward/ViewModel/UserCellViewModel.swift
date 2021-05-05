@@ -25,8 +25,6 @@ struct UserCellViewModel {
     var greenVerified: Bool {
         return user.greenVerified
     }
-    
-    
     init(user: User) {
         self.user = user
     }

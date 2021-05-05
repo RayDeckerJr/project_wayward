@@ -15,7 +15,7 @@ class SearchController : UITableViewController {
     private var filteredUsers = [User]()
     private let searchController = UISearchController(searchResultsController: nil)
     private var inSearchMode : Bool {
-        return searchController.isActive && searchController.searchBar.text!.isEmpty
+        return searchController.isActive && !searchController.searchBar.text!.isEmpty
     }
     
     //MARK: - Lifecycle
@@ -37,16 +37,18 @@ class SearchController : UITableViewController {
     //MARK: - Helpers
     
     func configureTableView() {
-        view.backgroundColor = .white
+        view.backgroundColor = .black
         tableView.register(UserCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.rowHeight = 80
+        
     }
+    
     
     func configureSearchController() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.placeholder = "Search Users"
         navigationItem.searchController = searchController
         definesPresentationContext = false
         
@@ -62,8 +64,10 @@ extension SearchController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! UserCell
+        
         let user = inSearchMode ? filteredUsers[indexPath.row] : users[indexPath.row]
         cell.viewModel = UserCellViewModel(user: user)
+        cell.backgroundColor = #colorLiteral(red: 0.05489068478, green: 0.05490844697, blue: 0.05488953739, alpha: 1)
         return cell
     }
 }

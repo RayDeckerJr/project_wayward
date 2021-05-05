@@ -34,9 +34,9 @@ class FeedController : UICollectionViewController {
     //MARK: - Helpers
     func configureUI() {
 
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .black
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "032-lock"),
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "032-lock-1"),
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(handleLogout))
