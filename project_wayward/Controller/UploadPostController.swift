@@ -7,21 +7,32 @@
 
 import UIKit
 
+protocol UploadPostControllerDelegate: class {
+    func controllerDidFinishUploadingPost(_ controller: UploadPostController)
+}
+
 class UploadPostController: UIViewController {
     //MARK: - Properties
+    
+    weak var delegate: UploadPostControllerDelegate?
+    
+    var selectImage: UIImage? {
+        didSet{photoImageView.image = selectImage}
+    }
     private let photoImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
-        iv.image = #imageLiteral(resourceName: "061-save-button-1")
         iv.clipsToBounds = true
         
         return iv
     }()
     
-    private let captionTextView: InputTextView = {
+    private lazy var captionTextView: InputTextView = {
         let tv = InputTextView()
         tv.placeholderText = "Enter Caption..."
         tv.font = UIFont.systemFont(ofSize: 16)
+        tv.delegate = self
+        
         return tv
     }()
     
@@ -29,7 +40,7 @@ class UploadPostController: UIViewController {
         let label = UILabel()
         label.textColor = .lightGray
         label.font = UIFont.systemFont(ofSize: 14)
-        label.text = "0/100"
+
        return label
     }()
     
@@ -43,12 +54,25 @@ class UploadPostController: UIViewController {
     //MARK: - Actions
     @objc func didTapCancel(){
         dismiss(animated: true, completion: nil)
+        self.delegate?.controllerDidFinishUploadingPost(self)
     }
     @objc func didTapDone(){
-        
+        guard let image = selectImage else {return}
+        guard let caption = captionTextView.text  else { return}
+        PostService.uploadPost(caption: caption, image: image) { error in
+            if let error = error {
+                
+                return
+            }
+            self.delegate?.controllerDidFinishUploadingPost(self)
+        }
     }
     //MARK: - Helpers
-    
+    func checkMaxLength(_ textView: UITextView, maxLength: Int){
+        if textView.text.count > maxLength {
+            textView.deleteBackward()
+        }
+    }
     func configureUI(){
         view.backgroundColor = .black
         
@@ -68,6 +92,14 @@ class UploadPostController: UIViewController {
         
         view.addSubview(characterCountLabel)
         characterCountLabel.anchor(bottom: captionTextView.bottomAnchor, right: view.rightAnchor,
-                                   paddingRight: 12)
+                                   paddingBottom: -12,paddingRight: 12)
+    }
+}
+// MARK: - TEXTFIELD DELEGATE
+extension UploadPostController: UITextViewDelegate{
+    func textViewDidChange(_ textView: UITextView) {
+        checkMaxLength(textView, maxLength: 140)
+        let count = textView.text.count
+        characterCountLabel.text = "\(count)/140"
     }
 }

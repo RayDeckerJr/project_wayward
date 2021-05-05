@@ -37,6 +37,7 @@
 		62385AD5263FBC5A00743C1E /* UserCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62385AD4263FBC5A00743C1E /* UserCellViewModel.swift */; };
 		62385AD72642671800743C1E /* UploadPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62385AD62642671800743C1E /* UploadPostController.swift */; };
 		62385AD926426B7C00743C1E /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62385AD826426B7C00743C1E /* InputTextView.swift */; };
+		62385ADB26427C4600743C1E /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62385ADA26427C4600743C1E /* PostService.swift */; };
 		62DE5EA7263828330048892F /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DE5EA6263828330048892F /* FeedCell.swift */; };
 		62DE5EA9263829580048892F /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DE5EA8263829580048892F /* Extentions.swift */; };
 /* End PBXBuildFile section */
@@ -74,6 +75,7 @@
 		62385AD4263FBC5A00743C1E /* UserCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCellViewModel.swift; sourceTree = "<group>"; };
 		62385AD62642671800743C1E /* UploadPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostController.swift; sourceTree = "<group>"; };
 		62385AD826426B7C00743C1E /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
+		62385ADA26427C4600743C1E /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		62DE5EA6263828330048892F /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		62DE5EA8263829580048892F /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		8C4412CAC41C30385D95CB5F /* Pods-project_wayward.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-project_wayward.release.xcconfig"; path = "Target Support Files/Pods-project_wayward/Pods-project_wayward.release.xcconfig"; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				62385AC1263A7C2F00743C1E /* ImageUploader.swift */,
 				62385AC3263A7C3B00743C1E /* AuthService.swift */,
 				62385ACA263AE87200743C1E /* UserService.swift */,
+				62385ADA26427C4600743C1E /* PostService.swift */,
 			);
 			path = APi;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				6232CC0526380DB700CC60F9 /* MainTabController.swift in Sources */,
 				62385AC2263A7C2F00743C1E /* ImageUploader.swift in Sources */,
 				62385AC4263A7C3B00743C1E /* AuthService.swift in Sources */,
+				62385ADB26427C4600743C1E /* PostService.swift in Sources */,
 				62385ACB263AE87200743C1E /* UserService.swift in Sources */,
 				62385AC6263AB71C00743C1E /* ProfileCell.swift in Sources */,
 				6232CBEB26380CA800CC60F9 /* SceneDelegate.swift in Sources */,
