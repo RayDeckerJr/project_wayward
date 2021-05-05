@@ -75,7 +75,7 @@ class FeedCell: UICollectionViewCell{
     private let postTimeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 10)
-        label.textColor = .lightGray
+        label.textColor = .white
         return label
     }()
     
@@ -123,6 +123,7 @@ class FeedCell: UICollectionViewCell{
         captionLabel.text = viewModel.caption
         postImageView.sd_setImage(with: viewModel.imageUrl)
         likesLabel.text = viewModel.likesLabelText
+        
         
         //User Stuff
         profileImageView.sd_setImage(with: viewModel.userProfileUrl)
