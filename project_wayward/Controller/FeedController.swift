@@ -36,7 +36,7 @@ class FeedController : UICollectionViewController {
 
         collectionView.backgroundColor = .black
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "032-lock-1"),
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "032-lock").withTintColor(.white),
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(handleLogout))

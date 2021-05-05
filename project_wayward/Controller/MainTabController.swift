@@ -56,16 +56,16 @@ class MainTabController: UITabBarController {
         
         let layout = UICollectionViewFlowLayout()
         
-        let feed = templeteNavigationController(unselectedImage: #imageLiteral(resourceName: "052-house-1"), selectedImage: #imageLiteral(resourceName: "034-view-1"), rootViewController: FeedController(collectionViewLayout: layout))
+        let feed = templeteNavigationController(unselectedImage: #imageLiteral(resourceName: "052-house").withTintColor(.white), selectedImage: #imageLiteral(resourceName: "052-house-1"), rootViewController: FeedController(collectionViewLayout: layout))
         
-        let search = templeteNavigationController( unselectedImage: #imageLiteral(resourceName: "023-search-1"), selectedImage: #imageLiteral(resourceName: "034-view-1"), rootViewController: SearchController())
+        let search = templeteNavigationController( unselectedImage: #imageLiteral(resourceName: "023-search").withTintColor(.white), selectedImage: #imageLiteral(resourceName: "023-search-1"), rootViewController: SearchController())
         
-        let imageselector = templeteNavigationController( unselectedImage: #imageLiteral(resourceName: "053-upload-1"), selectedImage: #imageLiteral(resourceName: "034-view-1"), rootViewController: ImageSelectController())
+        let imageselector = templeteNavigationController( unselectedImage: #imageLiteral(resourceName: "053-upload").withTintColor(.white), selectedImage: #imageLiteral(resourceName: "053-upload-1"), rootViewController: ImageSelectController())
         
-        let notifications = templeteNavigationController( unselectedImage: #imageLiteral(resourceName: "013-notification-1"), selectedImage: #imageLiteral(resourceName: "034-view-1"), rootViewController: NotifacationController())
+        let notifications = templeteNavigationController( unselectedImage: #imageLiteral(resourceName: "013-notification").withTintColor(.white), selectedImage: #imageLiteral(resourceName: "013-notification-1"), rootViewController: NotifacationController())
         
         let profileController = ProfileController(user: user)
-        let profile = templeteNavigationController(unselectedImage: #imageLiteral(resourceName: "006-user-1"), selectedImage: #imageLiteral(resourceName: "034-view-1"), rootViewController: profileController)
+        let profile = templeteNavigationController(unselectedImage: #imageLiteral(resourceName: "006-user").withTintColor(.white), selectedImage: #imageLiteral(resourceName: "006-user-1"), rootViewController: profileController)
         
         viewControllers = [feed,search,imageselector,notifications,profile]
         
