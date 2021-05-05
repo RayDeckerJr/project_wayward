@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "037-settings.png",
+      "filename" : "203-settings-2.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "037-settings-2.png",
+      "filename" : "203-settings-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "037-settings-1.png",
+      "filename" : "203-settings.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

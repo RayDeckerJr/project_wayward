@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "041-paper-plane.png",
+      "filename" : "089-share.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "041-paper-plane-2.png",
+      "filename" : "089-share-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "041-paper-plane-1.png",
+      "filename" : "089-share-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

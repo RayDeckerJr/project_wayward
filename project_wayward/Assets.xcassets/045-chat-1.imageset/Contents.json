@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "045-chat.png",
+      "filename" : "356-paper plane-2.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "045-chat-1.png",
+      "filename" : "356-paper plane-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "045-chat-2.png",
+      "filename" : "356-paper plane.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
