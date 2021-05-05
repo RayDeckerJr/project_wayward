@@ -12,9 +12,11 @@ private let reuseIdentifier = "Cell"
 
 class FeedController : UICollectionViewController {
     //MARK: - Lifecycle
+    private var posts = [Post]()
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        fetchPosts()
     }
     //MARK: - Actions
     @objc func handleLogout(){
@@ -30,13 +32,19 @@ class FeedController : UICollectionViewController {
                 print("DEBUG: FAILED TO SIGN OUT")
             }
         }
-    
+    //MARK: - API
+    func fetchPosts(){
+        PostService.fetchPosts{ posts in
+            self.posts = posts
+            self.collectionView.reloadData()
+        }
+    }
     //MARK: - Helpers
     func configureUI() {
 
         collectionView.backgroundColor = .black
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "032-lock").withTintColor(.white),
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "032-lock").withTintColor(.white),
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(handleLogout))
@@ -48,11 +56,12 @@ class FeedController : UICollectionViewController {
 extension FeedController{
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) ->
     Int {
-        return 5
+        return posts.count
         }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) ->
     UICollectionViewCell {
         let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FeedCell
+        cell.viewModel = PostViewModel(post: posts[indexPath.row])
         return cell
     }
 }

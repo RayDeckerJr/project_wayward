@@ -9,6 +9,10 @@ import UIKit
 
 class FeedCell: UICollectionViewCell{
     //MARK: - Properties
+    var viewModel: PostViewModel? {
+        didSet {configure()}
+    }
+    
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
@@ -32,13 +36,12 @@ class FeedCell: UICollectionViewCell{
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
         iv.isUserInteractionEnabled = true
-        iv.image = #imageLiteral(resourceName: "Logo2")
         return iv
     }()
     //MARK: - BUTTONS
     private lazy var likeButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "003-like-1"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "003-like").withTintColor(.white), for: .normal)
         button.setDimensions(height: 48, width: 48)
         button.contentMode = .scaleAspectFill
         return button
@@ -60,21 +63,18 @@ class FeedCell: UICollectionViewCell{
     
     private let likesLabel: UILabel = {
         let label = UILabel()
-        label.text = " 1 Likes"
         label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: 12)
         return label
     }()
     private let captionLabel: UILabel = {
         let label = UILabel()
-        label.text = "example caption"
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
     private let postTimeLabel: UILabel = {
         let label = UILabel()
-        label.text = "2 Days Ago"
         label.font = UIFont.systemFont(ofSize: 10)
         label.textColor = .lightGray
         return label
@@ -116,7 +116,16 @@ class FeedCell: UICollectionViewCell{
     @objc func didTapUsername(){
         print("Debug: did tap username")
     }
-    //MARK: - Actions
+    //MARK: - Helpers
+    func configure() {
+        guard let viewModel = viewModel else {return}
+        captionLabel.text = viewModel.caption
+        postImageView.sd_setImage(with: viewModel.imageUrl)
+        
+        
+        
+    }
+    
     func confirgureActionsButtons(){
         let  stackView = UIStackView(arrangedSubviews: [likeButton,commentButton,shareButton, likesLabel])
         stackView.axis = .horizontal
