@@ -18,6 +18,18 @@ class InputTextView: UITextView {
         label.textColor = .lightGray
         return label
     }()
+    
+    var placeholderShouldCenter = true{
+        didSet {
+            if placeholderShouldCenter {
+                placeHolderLabel.anchor(left: leftAnchor, right: rightAnchor, paddingLeft: 8)
+                placeHolderLabel.centerY(inView: self)
+            }else {
+                
+                placeHolderLabel.anchor(top: topAnchor, left: leftAnchor, paddingTop: 4,paddingLeft: 4)
+            }
+        }
+    }
     //MARK: - Lifecycle
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super .init(frame: frame, textContainer: textContainer)
