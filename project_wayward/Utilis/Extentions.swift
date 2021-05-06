@@ -16,7 +16,7 @@ extension UIViewController{
         navigationController?.navigationBar.barStyle = .black
         
         let gradient = CAGradientLayer()
-        gradient.colors = [UIColor.systemGreen.cgColor, UIColor.systemTeal.cgColor]
+        gradient.colors = [UIColor.black.cgColor, UIColor.darkGray.cgColor]
         gradient.locations = [0,1]
         view.layer.addSublayer(gradient)
         gradient.frame = view.frame

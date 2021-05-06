@@ -25,7 +25,7 @@ struct LoginViewModel:AuthenticationViewModel {
     }
     
     var buttonBackgroundColor: UIColor{
-        return formIsVaild ? .systemGreen:.systemTeal.withAlphaComponent(0.5)
+        return formIsVaild ? .systemTeal:.darkGray.withAlphaComponent(0.5)
     }
     var buttonTitleColor: UIColor{
         return formIsVaild ? .white : UIColor(white: 1, alpha: 0.9)
@@ -47,7 +47,7 @@ struct RegistrationViewModel: AuthenticationViewModel {
     }
     
     var buttonBackgroundColor: UIColor {
-        return formIsVaild ? .systemGreen:.systemTeal.withAlphaComponent(0.5)
+        return formIsVaild ? .systemTeal:.darkGray.withAlphaComponent(0.5)
         
     }
     

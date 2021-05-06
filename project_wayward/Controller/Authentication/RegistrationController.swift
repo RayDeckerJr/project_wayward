@@ -44,7 +44,7 @@ class RegistrationController: UIViewController{
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
         button.isEnabled = false
-        button.backgroundColor = .systemGreen
+        button.backgroundColor = .systemTeal
         return button
     }()
     private let alreadyHaveAccountButton: UIButton = {
