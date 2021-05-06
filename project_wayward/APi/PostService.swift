@@ -35,4 +35,22 @@ struct PostService {
             completion(posts)
         }
     }
+    
+    static func fetchPosts(forUser uid: String, completion: @escaping ([Post])-> Void) {
+        let query = COLLECTION_POSTS
+            .whereField("ownerUid", isEqualTo: uid)
+        
+            query.getDocuments {(snapshot, error) in
+            guard let documents = snapshot?.documents else {return}
+            
+                var posts = documents.map({Post(postID: $0.documentID, dictionary: $0.data()) })
+                posts.sort {(posts1, posts2)-> Bool in
+                    return posts1.timeStamp.seconds > posts2.timeStamp.seconds
+                }
+                
+            completion(posts)
+        }
+        
+
+    }
 }

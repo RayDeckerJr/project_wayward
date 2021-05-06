@@ -7,11 +7,16 @@
 
 import UIKit
 
+protocol FeedCellDelegate: AnyObject {
+    func cell(_ cell: FeedCell, wantsToShowCommentsFor post: Post)
+}
 class FeedCell: UICollectionViewCell{
     //MARK: - Properties
     var viewModel: PostViewModel? {
         didSet {configure()}
     }
+    
+    weak var delegate: FeedCellDelegate?
     
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
@@ -50,6 +55,7 @@ class FeedCell: UICollectionViewCell{
         button.setImage(#imageLiteral(resourceName: "045-chat-1"), for: .normal)
         button.setDimensions(height: 48, width: 48)
         button.contentMode = .scaleAspectFill
+        button.addTarget(self, action: #selector(didTapComments), for: .touchUpInside)
         return button
     }()
     private lazy var shareButton: UIButton = {
@@ -115,6 +121,11 @@ class FeedCell: UICollectionViewCell{
 
     @objc func didTapUsername(){
         print("Debug: did tap username")
+    }
+    
+    @objc func didTapComments(){
+        guard let viewModel = viewModel else {return}
+        delegate?.cell(self, wantsToShowCommentsFor: viewModel.post)
     }
       
     //MARK: - Helpers
